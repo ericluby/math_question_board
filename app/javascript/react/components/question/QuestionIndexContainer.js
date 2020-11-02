@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 
 import QuestionFormContainer from './QuestionFormContainer'
+import QuestionTile from './QuestionTile'
 
 const QuestionIndexContainer = (props) => {
   const [questions, setQuestions] = useState([])
@@ -19,14 +20,12 @@ const QuestionIndexContainer = (props) => {
     .then(response => response.json())
     .then(body => {
       // currently not hitting this debugger
-      debugger
-      setQuestions([...questions, body]);
+      setQuestions(body);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }, [])
 
   const addNewQuestion = (formData) => {
-    debugger
     fetch("/api/v1/questions", {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -48,11 +47,19 @@ const QuestionIndexContainer = (props) => {
     .then(response => response.json())
     .then(body => {
       // currently not hitting this debugger
-      debugger
       setQuestions([...questions, body]);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+
+  const questionList = questions.map((questionObject) => {
+    return (
+    <QuestionTile 
+      key={questionObject.id}
+      data={questionObject}
+    />
+    )
+  })
 
   return(
     <div>
@@ -63,6 +70,7 @@ const QuestionIndexContainer = (props) => {
           addNewQuestion={addNewQuestion}
         />
       </div>
+        {questionList}
     </div>
   )
 }

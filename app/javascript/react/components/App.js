@@ -11,7 +11,6 @@ const App = (props) => {
     <Switch>
     <Route exact path="/" component={ClassroomIndexContainer}/>
     <Route exact path="/classrooms/:id" component={ClassroomShowContainer}/>
-    {/* <Route exact path="/api/v1/questions" component={QuestionIndexContainer}/> */}
     </Switch>
   </BrowserRouter>
   )

@@ -21,17 +21,35 @@ const ClassroomShowContainer = (props) => {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }, [])
   
-   const UsersList = users.map((userObject) => {
-      return (
-        <li key={userObject.id} >{userObject.id} {userObject.first_name} {userObject.last_name}</li>
-      )
-   })
+  // const UsersList = users.map((userObject, index) => {
+  //   debugger
+  //     return (
+  //       <li key={index} >{userObject.role}: {userObject.first_name} {userObject.last_name} </li>
+  //     )
+  // })
+
+  const teachers = users.filter(user => user.role === "teacher")
+  const TeachersList = teachers.map((userObject, index) => {
+    return (
+      <li key={index} >{userObject.role}: {userObject.first_name} {userObject.last_name} </li>
+    )
+  })
+
+  const students = users.filter(user => user.role === "student")
+  const StudentsList = students.map((userObject, index) => {
+    return (
+      <li key={index} >{userObject.role}: {userObject.first_name} {userObject.last_name} </li>
+    )
+  })
 
   return(
     <div>
       <p>hello from the classroom Show Container</p>
       <ul>
-        {UsersList}
+        {TeachersList}
+      </ul>
+      <ul>
+        {StudentsList}
       </ul>
     </div>
   )

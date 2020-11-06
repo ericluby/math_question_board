@@ -12,13 +12,17 @@ u1 = User.new(first_name: "Eric", last_name: "Luby", email: "luby@fake.com", is_
 u1.password =  "1234567"
 u1.save
 
-u2 = User.new(first_name: "small", last_name: "student", email: "6th@fake.com", is_admin: false)
+u2 = User.new(first_name: "Nathan", last_name: "Jones", email: "njones@fake.com", is_admin: false)
 u2.password =  "1234567"
 u2.save
 
-u3 = User.new(first_name: "tall", last_name: "student", email: "8th@fake.com", is_admin: false)
+u3 = User.new(first_name: "Tom", last_name: "Smith", email: "tsmith@fake.com", is_admin: false)
 u3.password =  "1234567"
 u3.save
+
+u4 = User.new(first_name: "Jacob", last_name: "Marley", email: "jmarley@fake.com", is_admin: false)
+u4.password =  "1234567"
+u4.save
 
 # classrooms
 Classroom.destroy_all
@@ -27,4 +31,8 @@ cr2 = Classroom.create(subject: "8th grade math", term: "2020-2021")
 
 # rosters
 Roster.destroy_all
-r1 = Roster.create(user: u2, classroom: cr1)
+r1 = Roster.create(user: u1, classroom: cr1, role: "teacher")
+r1 = Roster.create(user: u2, classroom: cr1, role: "student")
+r1 = Roster.create(user: u3, classroom: cr1, role: "student")
+r1 = Roster.create(user: u4, classroom: cr1, role: "tutor")
+r1 = Roster.create(user: u4, classroom: cr2, role: "student")

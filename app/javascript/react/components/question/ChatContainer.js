@@ -36,10 +36,9 @@ const ChatContainer = (props) => {
         connected: () => console.log("ChatChannel connected"),
         disconnected: () => console.log("ChatChannel disconnected"),
         received: data => {
-          // debugger
           // Data broadcasted from the chat channel
           console.log(data)
-          handleMessageReceipt(data)
+          handleMessageReceipt([data])
         }
       }
     );
@@ -47,7 +46,6 @@ const ChatContainer = (props) => {
 
 
   const handleMessageReceipt = (messages) => {
-    debugger
     setMessages(messages)
   }
 
@@ -57,7 +55,6 @@ const ChatContainer = (props) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    debugger
     // Send info to the receive method on the back end
     App.chatChannel.send({
      message: message,

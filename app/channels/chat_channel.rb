@@ -11,20 +11,33 @@ class ChatChannel < ApplicationCable::Channel
   def receive(data)
     puts data
     # Currently, we dont actually use this code that much. But you would have to set up these models if you want to record the conversations in your chat.
-    chat = Question.find_or_create_by(id: params[:chat_id])
-    binding.pry
-    new_message = Message.create(body: data["message"], user: User.find(data["user"]["user_id"]))
-    chat.messages << new_message
+    # chat = Question.find_or_create_by(id: params[:chat_id], user: User.find(data["user"]["user_id"]))
+    # chat.user_id = data["user"]["user_id"]
+    # # temporary
+    # chat.title = "hello"
+    # chat.status = "new"
+    # binding.pry
+    # new_message = Message.create(body: data["message"], user: User.find(data["user"]["user_id"]), question: chat)
     
-    chat_key = chat.id
+    # chat_key = chat.id
+    
+    # chat_json = {
+    #   "chat_key": chat_key,
+    #   "message": new_message.body,
+    #   "messageId": new_message.id,
+    #   "user": data["user"]
+    # }
+
+    # currently hardcoded 
     
     chat_json = {
-      "chat_key": chat_key,
-      "message": new_message.body,
-      "messageId": new_message.id,
+      "chat_key": 1,
+      "message": data["message"],
+      "messageId": 1,
       "user": data["user"]
     }
     
+    binding.pry
     ActionCable.server.broadcast("chat_#{params[:chat_id]}", chat_json)
   end
 end

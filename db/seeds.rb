@@ -24,6 +24,9 @@ u4 = User.new(first_name: "Jacob", last_name: "Marley", email: "jmarley@fake.com
 u4.password =  "1234567"
 u4.save
 
+u5 = User.create(email: "banana@gmail.com", password: "123456", first_name: "Nick", last_name: "banana", is_admin: false)
+u6 = User.create(email: "fake@fake.com", password: "123456", first_name: "faker", last_name: "baker", is_admin: false)
+
 # classrooms
 Classroom.destroy_all
 cr1 = Classroom.create(subject: "6th grade math", term: "2020-2021")
@@ -36,3 +39,16 @@ r1 = Roster.create(user: u2, classroom: cr1, role: "student")
 r1 = Roster.create(user: u3, classroom: cr1, role: "student")
 r1 = Roster.create(user: u4, classroom: cr1, role: "tutor")
 r1 = Roster.create(user: u4, classroom: cr2, role: "student")
+
+# questions
+Question.destroy_all
+q1 = Question.create(user: u1, classroom: cr1, status: "new", title: "distributive property")
+q2 = Question.create(user: u2, classroom: cr1, status: "new", title: "triangle area")
+
+# messages
+Message.destroy_all
+m1 = Message.create(user: u1, question: q1, body: "greetings!")
+m2 = Message.create(user: u2, question: q1, body: "hello!")
+m3 = Message.create(user: u1, question: q1, body: "how can i help?")
+m4 = Message.create(user: u2, question: q2, body: "yoyo!")
+m5 = Message.create(user: u1, question: q2, body: "whatsup!!")

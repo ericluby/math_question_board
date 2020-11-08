@@ -17,7 +17,9 @@ class Api::V1::ClassroomsController < ApiController
   end
 
   def create
-    # binding.pry
-    render json: Classroom.all
+    classroom = Classroom.new(subject: params["subject"], term: params["term"])
+    classroom.save
+    binding.pry
+    render json: classroom
   end
 end

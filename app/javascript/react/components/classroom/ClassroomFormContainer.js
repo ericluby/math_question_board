@@ -15,7 +15,7 @@ const ClassroomFormContainer = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // add a function here to persist the question
+    // add a function here to persist the classroom
     props.addNewClassroom(newClassroom)
     setNewClassroom({
       subject: "",

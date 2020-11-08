@@ -5,7 +5,7 @@ import TextFieldWithSubmit from '../TextFieldWithSubmit';
 const ChatContainer = (props) => {
   const [user, setUser] = useState({})
   const [messages, setMessages] = useState([])
-  const [message, setMessage] = useState("")
+  const [body, setBody] = useState("")
 
 
   useEffect(() => {
@@ -25,12 +25,12 @@ const ChatContainer = (props) => {
     .then((data) => {
       setUser(data)
     })
-
     App.chatChannel = App.cable.subscriptions.create(
       // Info that is sent to the subscribed method
       {
         channel: "ChatChannel",
-        chat_id: chatId
+        chat_id: chatId,
+        question_id: 4
       },
       {
         connected: () => console.log("ChatChannel connected"),
@@ -38,7 +38,7 @@ const ChatContainer = (props) => {
         received: data => {
           // Data broadcasted from the chat channel
           console.log(data)
-          handleMessageReceipt([data])
+          handleMessageReceipt(data)
         }
       }
     );
@@ -50,31 +50,29 @@ const ChatContainer = (props) => {
   }
 
   const handleClearForm = () => {
-    setMessage("")
+    setBody("")
   }
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     // Send info to the receive method on the back end
     App.chatChannel.send({
-     message: message,
-     user: user
+      body: body,
+      userId: user
     })
 
     handleClearForm();
   }
 
   const handleMessageChange = (event) => {
-    setMessage(event.target.value)
+    setBody(event.target.value)
   }
 
   let messagesComponents = messages.map(message => {
     return(
       <Message
         key={message.messageId}
-        handle={message.user.handle}
-        icon={message.user.icon_num}
-        message={message.message}
+        body={message.body}
       />
     )
   }, this);
@@ -86,7 +84,7 @@ const ChatContainer = (props) => {
       </div>
       <form onSubmit={handleFormSubmit}>
         <TextFieldWithSubmit
-          content={message}
+          content={body}
           name='message'
           handlerFunction={handleMessageChange}
         />

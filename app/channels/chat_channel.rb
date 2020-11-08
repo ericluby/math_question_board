@@ -29,15 +29,24 @@ class ChatChannel < ApplicationCable::Channel
     # }
 
     # currently hardcoded 
-    
-    chat_json = {
-      "chat_key": 1,
-      "message": data["message"],
-      "messageId": 1,
-      "user": data["user"]
-    }
-    
-    binding.pry
-    ActionCable.server.broadcast("chat_#{params[:chat_id]}", chat_json)
+    question = Question.find(params["question_id"])
+    messages_json = question.messages.last(8).map do |message|
+      chat_json = {
+        "chat_key": 1,
+        "questionId": message["question_id"],
+        "body": message["body"],
+        "messageId": message.id,
+        "userId": message["user_id"]
+      }
+      
+      # chat_json = {
+      #   "chat_key": 1,
+      #   "message": data["message"],
+      #   "messageId": 1,
+      #   "user": data["user"]
+      # }
+    end
+
+    ActionCable.server.broadcast("chat_#{params[:chat_id]}", messages_json)
   end
 end

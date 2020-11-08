@@ -9,7 +9,6 @@ const ChatContainer = (props) => {
 
 
   useEffect(() => {
-    let chatId = props.match.params.id
 
     fetch("/api/v1/users/current", {
       credentials: 'same-origin',
@@ -29,7 +28,6 @@ const ChatContainer = (props) => {
       // Info that is sent to the subscribed method
       {
         channel: "ChatChannel",
-        chat_id: chatId,
         question_id: 4
       },
       {

@@ -1,13 +1,12 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "chat_#{params[:chat_id]}"
+    stream_from "chat_#{params[:question_id]}"
     # stream_from "chat_channel"
    
     question = Question.find(params["question_id"])
 
     messages_json = question.messages.map do |message|
       chat_json = {
-        "chat_key": 1,
         "questionId": message["question_id"],
         "body": message["body"],
         "messageId": message.id,
@@ -15,7 +14,7 @@ class ChatChannel < ApplicationCable::Channel
       }
     end
 
-    ActionCable.server.broadcast("chat_#{params[:chat_id]}", messages_json)
+    ActionCable.server.broadcast("chat_#{params[:question_id]}", messages_json)
   end
 
   def unsubscribed
@@ -31,7 +30,6 @@ class ChatChannel < ApplicationCable::Channel
 
     messages_json = question.messages.map do |message|
       chat_json = {
-        "chat_key": 1,
         "questionId": message["question_id"],
         "body": message["body"],
         "messageId": message.id,
@@ -39,6 +37,6 @@ class ChatChannel < ApplicationCable::Channel
       }
     end
 
-    ActionCable.server.broadcast("chat_#{params[:chat_id]}", messages_json)
+    ActionCable.server.broadcast("chat_#{params[:question_id]}", messages_json)
   end
 end

@@ -30,6 +30,8 @@ class ChatChannel < ApplicationCable::Channel
 
     # currently hardcoded 
     question = Question.find(params["question_id"])
+    Message.create(user_id: data["userId"], question: question, body: data["body"])
+
     messages_json = question.messages.last(8).map do |message|
       chat_json = {
         "chat_key": 1,

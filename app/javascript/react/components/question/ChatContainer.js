@@ -58,7 +58,7 @@ const ChatContainer = (props) => {
     // Send info to the receive method on the back end
     App.chatChannel.send({
       body: body,
-      userId: user
+      userId: user.user_id
     })
 
     handleClearForm();

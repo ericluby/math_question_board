@@ -32,7 +32,7 @@ cr2 = Classroom.create(subject: "8th grade math", term: "2020-2021")
 # rosters
 Roster.destroy_all
 r1 = Roster.create(user: u1, classroom: cr1, role: "teacher")
-r1 = Roster.create(user: u2, classroom: cr1, role: "student")
-r1 = Roster.create(user: u3, classroom: cr1, role: "student")
-r1 = Roster.create(user: u4, classroom: cr1, role: "tutor")
-r1 = Roster.create(user: u4, classroom: cr2, role: "student")
+r2 = Roster.create(user: u2, classroom: cr1, role: "student")
+r3 = Roster.create(user: u3, classroom: cr1, role: "student")
+r4 = Roster.create(user: u4, classroom: cr1, role: "tutor")
+r5 = Roster.create(user: u4, classroom: cr2, role: "student")

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_235529) do
+ActiveRecord::Schema.define(version: 2020_11_03_212222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "subject", null: false
+    t.string "term", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -28,11 +35,23 @@ ActiveRecord::Schema.define(version: 2020_10_27_235529) do
 
   create_table "questions", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.bigint "classroom_id", null: false
     t.string "status", null: false
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_questions_on_classroom_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "rosters", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "classroom_id", null: false
+    t.string "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_rosters_on_classroom_id"
+    t.index ["user_id"], name: "index_rosters_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

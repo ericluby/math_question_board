@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'homes#index'
- 
+
+  get 'classrooms/:id', to: 'homes#index'
+
   devise_for :users
 
   mount ActionCable.server => '/cable'
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
       resources :messages, only: [:create]
       resources :users, only: [:show]
       get "users/current" => "users#current_user"
+      resources :classrooms, only: [:index, :show, :create]
     end
   end
 

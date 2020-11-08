@@ -42,8 +42,8 @@ r1 = Roster.create(user: u4, classroom: cr2, role: "student")
 
 # questions
 Question.destroy_all
-q1 = Question.create(user: u1, status: "new", title: "distributive property")
-q2 = Question.create(user: u2, status: "new", title: "triangle area")
+q1 = Question.create(user: u1, classroom: cr1, status: "new", title: "distributive property")
+q2 = Question.create(user: u2, classroom: cr1, status: "new", title: "triangle area")
 
 # messages
 Message.destroy_all
@@ -52,4 +52,3 @@ m2 = Message.create(user: u2, question: q1, body: "hello!")
 m3 = Message.create(user: u1, question: q1, body: "how can i help?")
 m4 = Message.create(user: u2, question: q2, body: "yoyo!")
 m5 = Message.create(user: u1, question: q2, body: "whatsup!!")
-

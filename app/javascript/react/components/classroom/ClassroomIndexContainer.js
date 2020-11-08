@@ -61,9 +61,11 @@ const ClassroomIndexContainer = (props) => {
   }
 
   return(
-    <div>
-      <p>hello from the classroom Index Container.  Scroll down to choose a class or create one.</p>
-      {ClassroomList}
+    <div >
+      <p>Select your class below</p>
+      <div>
+       {ClassroomList}
+      </div>
       <ClassroomFormContainer
         addNewClassroom={addNewClassroom}
       />

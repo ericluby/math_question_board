@@ -7,7 +7,6 @@ const ChatContainer = (props) => {
   const [messages, setMessages] = useState([])
   const [body, setBody] = useState("")
 
-
   useEffect(() => {
 
     fetch("/api/v1/users/current", {
@@ -28,7 +27,7 @@ const ChatContainer = (props) => {
       // Info that is sent to the subscribed method
       {
         channel: "ChatChannel",
-        question_id: 4
+        question_id: props.match.params.id
       },
       {
         connected: () => console.log("ChatChannel connected"),

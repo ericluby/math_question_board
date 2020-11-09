@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show]
       get "users/current" => "users#current_user"
       resources :classrooms, only: [:index, :show, :create]
+      resources :rosters, only: [:create]
     end
   end
 

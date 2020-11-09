@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 
 import QuestionIndexContainer from "./question/QuestionIndexContainer.js"
+import ChatContainer from "./question/ChatContainer.js"
 import ClassroomIndexContainer from "./classroom/ClassroomIndexContainer.js"
 import ClassroomShowContainer from "./classroom/ClassroomShowContainer.js"
 
@@ -10,6 +11,7 @@ const App = (props) => {
   <BrowserRouter>
     <Switch>
     <Route exact path="/" component={ClassroomIndexContainer}/>
+    <Route exact path="/chats/:id" component={ChatContainer}/>
     <Route exact path="/classrooms/:id" component={ClassroomShowContainer}/>
     </Switch>
   </BrowserRouter>

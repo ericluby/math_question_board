@@ -61,7 +61,7 @@ const ClassroomIndexContainer = (props) => {
   }
 
   return(
-    <div className="grid-container">
+    <div className="grid-container page">
       <p className="text-center">Select your classroom below</p>
       <div className="grid-x grid-margin-x small-up-2 medium-up-3">
         {ClassroomList}

@@ -10,7 +10,13 @@ class Api::V1::RostersController < ApiController
       puts "already exists"
     else
       newRoster = Roster.create(user: user, classroom_id: params["classroomId"], role: params["role"])
-      render json: newRoster
+    
+      userWithRoles =  
+        { :first_name => user.first_name,
+          :last_name => user.last_name,
+          :role => newRoster.role }
+  
+      render json: userWithRoles
     end
   end
 end

@@ -63,14 +63,16 @@ const QuestionIndexContainer = (props) => {
 
   return(
     <div>
-      <p>Hello! In the future the index page will show the classrooms that a student or teacher is a part of.  For now you can click the button below to create a new question!</p>
-
       <div>
         <QuestionFormContainer
           addNewQuestion={addNewQuestion}
         />
       </div>
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x small-up-2 medium-up-3">
         {questionList}
+        </div>
+      </div>
     </div>
   )
 }

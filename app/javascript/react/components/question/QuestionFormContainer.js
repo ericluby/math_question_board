@@ -41,13 +41,14 @@ const QuestionFormContainer = (props) => {
           </label>
           <label>
             Question:
-            <input
+            <textarea
+              rows="3"
               name="questionBody"
               id="questionBody"
               type="text"
               onChange={handleChange}
-              value={newQuestion.questionBody}
-            />
+              value={newQuestion.questionBody}>
+            </textarea>
           </label>
           <input
             className="button"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import QuestionFormContainer from '../question/QuestionFormContainer'
-
+import QuestionIndexContainer from '../question/QuestionIndexContainer'
 
 const ClassroomShowContainer = (props) => {
   const [users, setUsers] = useState([])
@@ -47,7 +46,7 @@ const ClassroomShowContainer = (props) => {
 
   return(
     <div className="grid-x">
-      <div className="cell large-3">
+      <div className="cell medium-3">
         <ul>
           {TeachersList}
         </ul>
@@ -55,8 +54,8 @@ const ClassroomShowContainer = (props) => {
           {StudentsList}
         </ul>
       </div>
-      <div className="cell large-9">
-        <QuestionFormContainer/>
+      <div className="cell medium-9">
+        <QuestionIndexContainer/>
       </div>
     </div>
   )

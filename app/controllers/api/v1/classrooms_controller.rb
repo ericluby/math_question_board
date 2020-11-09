@@ -1,6 +1,5 @@
 class Api::V1::ClassroomsController < ApiController
   def index
-    # binding.pry
     render json: Classroom.all
   end
 
@@ -19,7 +18,7 @@ class Api::V1::ClassroomsController < ApiController
   def create
     classroom = Classroom.new(subject: params["subject"], term: params["term"])
     classroom.save
-    binding.pry
+    
     render json: classroom
   end
 end

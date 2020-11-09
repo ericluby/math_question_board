@@ -25,7 +25,7 @@ const ClassroomFormContainer = (props) => {
 
   return(
     <div>
-      <p>hello from the classroom form!</p>
+      <p>Create a New Classroom below</p>
       <form onSubmit={handleSubmit} >
         <label>
           Classroom Subject:
@@ -33,6 +33,7 @@ const ClassroomFormContainer = (props) => {
             name="subject"
             id="subject"
             type="text"
+            placeholder="6th grade math"
             onChange={handleChange}
             value={newClassroom.subject}
           />
@@ -43,6 +44,7 @@ const ClassroomFormContainer = (props) => {
             name="term"
             id="term"
             type="text"
+            placeholder="2020-2021"
             onChange={handleChange}
             value={newClassroom.term}
           />

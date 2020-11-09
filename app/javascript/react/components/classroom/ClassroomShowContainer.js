@@ -45,12 +45,12 @@ const ClassroomShowContainer = (props) => {
   })
 
   return(
-    <div className="grid-x">
-      <div className="cell medium-3">
-        <ul>
+    <div className="grid-x page">
+      <div className="cell medium-3 secondary">
+        <ul className="light-text">
           {TeachersList}
         </ul>
-        <ul>
+        <ul className="light-text">
           {StudentsList}
         </ul>
       </div>

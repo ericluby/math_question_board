@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
 
+import QuestionFormContainer from '../question/QuestionFormContainer'
+
+
 const ClassroomShowContainer = (props) => {
   const [users, setUsers] = useState([])
   
@@ -43,14 +46,18 @@ const ClassroomShowContainer = (props) => {
   })
 
   return(
-    <div>
-      <p>hello from the classroom Show Container</p>
-      <ul>
-        {TeachersList}
-      </ul>
-      <ul>
-        {StudentsList}
-      </ul>
+    <div className="grid-x">
+      <div className="cell large-3">
+        <ul>
+          {TeachersList}
+        </ul>
+        <ul>
+          {StudentsList}
+        </ul>
+      </div>
+      <div className="cell large-9">
+        <QuestionFormContainer/>
+      </div>
     </div>
   )
 }

@@ -9,10 +9,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :questions, only: [:index, :create]
       resources :users, only: [:show]
       get "users/current" => "users#current_user"
-      resources :classrooms, only: [:index, :show, :create]
+      resources :classrooms, only: [:index, :show, :create] do
+        resources :questions, only: [:index, :create]
+      end
       resources :rosters, only: [:create]
     end
   end

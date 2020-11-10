@@ -5,9 +5,8 @@ import QuestionTile from './QuestionTile'
 
 const QuestionIndexContainer = (props) => {
   const [questions, setQuestions] = useState([])
-
   useEffect(() => {
-    fetch("/api/v1/questions")
+    fetch(`/api/v1/classrooms/${props.classroomId}/questions`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -26,7 +25,7 @@ const QuestionIndexContainer = (props) => {
   }, [])
 
   const addNewQuestion = (formData) => {
-    fetch("/api/v1/questions", {
+    fetch(`/api/v1/classrooms/${props.classroomId}/questions`, {
       method: 'POST',
       body: JSON.stringify(formData),
       credentials: 'same-origin',

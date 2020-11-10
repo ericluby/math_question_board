@@ -4,15 +4,9 @@ class Api::V1::ClassroomsController < ApiController
   end
 
   def show
-    users = Roster.where(classroom_id: params[:id]).joins(:user).pluck(:first_name, :last_name, :role)
-    
-    usersWithRoles = users.map do |user| 
-      { :first_name => user[0],
-        :last_name => user[1],
-        :role => user[2] }
-    end
+    classroom = Classroom.find(params[:id])
 
-    render json: usersWithRoles
+    render json: classroom
   end
 
   def create

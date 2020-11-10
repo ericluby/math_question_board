@@ -19,6 +19,7 @@ const ClassroomShowContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
+      debugger
       setUsers(body)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

@@ -1,5 +1,9 @@
 class Api::V1::QuestionsController < ApiController
   def index
+    binding.pry
+    # questions = Question.where(classroom_id: params['classroom_id'])
+
+    # render json: questions
     render json: Question.all
   end
 

@@ -8,6 +8,7 @@ class Api::V1::QuestionsController < ApiController
   def create
     question = Question.new(status: "new", title: params["title"])
     question.user = current_user
+    question.classroom_id = params["classroom_id"]
     question.save
 
     render json: question

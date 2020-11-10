@@ -58,7 +58,8 @@ const ClassroomShowContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      setUsers([...users, body]);
+      debugger
+      setusersWithRoles([...usersWithRoles, body]);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -82,7 +83,9 @@ const ClassroomShowContainer = (props) => {
         </div>
       </div>
       <div className="cell medium-9">
-        <QuestionIndexContainer/>
+        <QuestionIndexContainer
+          classroomId={props.match.params.id}
+        />
       </div>
     </div>
   )

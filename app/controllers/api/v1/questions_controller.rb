@@ -1,9 +1,8 @@
 class Api::V1::QuestionsController < ApiController
   def index
-    # questions = Question.where(classroom_id: params['classroom_id'])
+    questions = Question.where(classroom_id: params['classroom_id'])
 
-    # render json: questions
-    render json: Question.all
+    render json: questions
   end
 
   def create

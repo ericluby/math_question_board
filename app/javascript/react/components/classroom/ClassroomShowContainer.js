@@ -4,8 +4,7 @@ import QuestionIndexContainer from '../question/QuestionIndexContainer'
 import AddUserToClassroomForm from './AddUserToClassroomForm'
 
 const ClassroomShowContainer = (props) => {
-  const [users, setUsers] = useState([])
-
+  const [usersWithRoles, setusersWithRoles] = useState([])
   useEffect(() => {
     fetch(`/api/v1/classrooms/${props.match.params.id}`)
     .then(response => {
@@ -19,23 +18,22 @@ const ClassroomShowContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      debugger
-      setUsers(body)
+      setusersWithRoles(body.users_with_role)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }, [])
   
-  const teachers = users.filter(user => user.role === "teacher")
-  const TeachersList = teachers.map((userObject, index) => {
+  const teachers = usersWithRoles.filter(user => user.role === "teacher")
+  const TeachersList = teachers.map((user, index) => {
     return (
-      <li key={index} >{userObject.first_name} {userObject.last_name} </li>
+      <li key={index} >{user.user.first_name} {user.user.last_name} </li>
     )
   })
 
-  const students = users.filter(user => user.role === "student")
-  const StudentsList = students.map((userObject, index) => {
+  const students = usersWithRoles.filter(user => user.role === "student")
+  const StudentsList = students.map((user, index) => {
     return (
-      <li key={index} >{userObject.first_name} {userObject.last_name} </li>
+      <li key={index} >{user.user.first_name} {user.user.last_name} </li>
     )
   })
 

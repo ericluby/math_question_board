@@ -94,7 +94,10 @@ const ChatContainer = (props) => {
       .then((body) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
-  };
+      setImageUpload({
+        image: ""
+      })
+    };
 
   const handleMessageChange = (event) => {
     setBody(event.target.value)
@@ -139,11 +142,11 @@ const ChatContainer = (props) => {
   }, this);
 
   return(
-    <div>
-      <div className='callout chat' id='chatWindow'>
+    <div className="grid-x">
+      <div className='callout chat cell medium-12' id='chatWindow'>
         {messagesComponents}
       </div>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="cell medium-12">
         <TextFieldWithSubmit
           content={body}
           name='message'
@@ -152,7 +155,7 @@ const ChatContainer = (props) => {
       </form>
 
       <div>
-        <form onSubmit={handleImageFormSubmit}>
+        <form onSubmit={handleImageFormSubmit} className='grid-x cell medium-6'>
           <Dropzone onDrop={handleFileUpload}>
             {({ getRootProps, getInputProps }) => (
               <section>
@@ -167,7 +170,6 @@ const ChatContainer = (props) => {
           </Dropzone>
             
           {photoUploaded}
-
           
           <div className="grid-x align-center">
             <input
@@ -178,14 +180,14 @@ const ChatContainer = (props) => {
         </form>
       </div>
       
-      <div>
+      <div className='grid-x cell medium-6'>
         <EditableMathField
           latex={latex}
           onChange={(mathField) => {
             setLatex(mathField.latex())
           }}
         />
-        <form onSubmit={handleEquationFormSubmit}>
+        <form onSubmit={handleEquationFormSubmit} className="grid-x align-center">
           <input
                 type="submit"
                 value="send equation"

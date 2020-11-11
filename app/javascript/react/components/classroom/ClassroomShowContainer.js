@@ -58,7 +58,6 @@ const ClassroomShowContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      debugger
       setusersWithRoles([...usersWithRoles, body]);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

@@ -32,7 +32,7 @@ const ChatContainer = (props) => {
       // Info that is sent to the subscribed method
       {
         channel: "ChatChannel",
-        question_id: props.match.params.id
+        question_id: props.questionId
       },
       {
         connected: () => console.log("ChatChannel connected"),
@@ -69,8 +69,7 @@ const ChatContainer = (props) => {
     event.preventDefault();
     let body = new FormData();
     body.append("image", imageUpload.image);
-    // the classroom ID is currently hardcoded
-    fetch(`/api/v1/classrooms/1/questions/${props.match.params.id}/messages`, {
+    fetch(`/api/v1/classrooms/${props.classroomId}/questions/${props.questionId}/messages`, {
       method: "POST",
       body: body,
       credentials: "same-origin",
@@ -91,7 +90,6 @@ const ChatContainer = (props) => {
       })
       .then((response) => response.json())
       .then((body) => {
-        debugger
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };

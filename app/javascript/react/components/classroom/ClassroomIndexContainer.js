@@ -54,7 +54,6 @@ const ClassroomIndexContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      // currently not hitting this debugger
       setClassrooms([...classrooms, body]);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

@@ -18,7 +18,6 @@ const QuestionIndexContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      // currently not hitting this debugger
       setQuestions(body);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -45,7 +44,6 @@ const QuestionIndexContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      // currently not hitting this debugger
       setQuestions([...questions, body]);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

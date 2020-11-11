@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const QuestionTile = (props) => {
   return(
     <div className="cell">
-      <Link to={`/chats/${props.data.id}`} >
+      <Link to={`/classrooms/${props.data.classroom.id}/questions/${props.data.id}`} >
         <div className="card">
           <div className="card-section">
             <h4 className="text-center">{props.data.title}</h4>

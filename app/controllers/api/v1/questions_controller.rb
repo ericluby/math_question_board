@@ -13,4 +13,9 @@ class Api::V1::QuestionsController < ApiController
 
     render json: question
   end
+
+  def show
+
+  end
+
 end

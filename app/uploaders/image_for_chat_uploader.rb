@@ -6,10 +6,10 @@ class ImageForChatUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
 
   if Rails.env.production? 
-    puts "using file"
-    storage :file
+    puts "using fog in production"
+    storage :fog
   else
-    puts "using fog"
+    puts "using fog not in production"
     storage :fog
   end
 

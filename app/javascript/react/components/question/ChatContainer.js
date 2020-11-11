@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Message from '../Message';
 import TextFieldWithSubmit from '../TextFieldWithSubmit';
 import Dropzone from "react-dropzone";
+import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
 
+addStyles()
 
 const ChatContainer = (props) => {
   const [user, setUser] = useState({})
@@ -11,6 +13,7 @@ const ChatContainer = (props) => {
   const [imageUpload, setImageUpload] = useState({
     image: ""
   });
+  const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2')
 
   useEffect(() => {
 
@@ -46,7 +49,6 @@ const ChatContainer = (props) => {
     );
   }, [])
 
-
   const handleMessageReceipt = (messages) => {
     setMessages(messages)
   }
@@ -62,9 +64,9 @@ const ChatContainer = (props) => {
       body: body,
       userId: user.user_id
     })
-
     handleClearForm();
   }
+
   const handleImageFormSubmit = (event) => {
     event.preventDefault();
     let body = new FormData();
@@ -92,7 +94,10 @@ const ChatContainer = (props) => {
       .then((body) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
-  };
+      setImageUpload({
+        image: ""
+      })
+    };
 
   const handleMessageChange = (event) => {
     setBody(event.target.value)
@@ -114,8 +119,21 @@ const ChatContainer = (props) => {
     );
   }
 
+  const handleEquationFormSubmit = (event) => {
+    event.preventDefault();
+    App.chatChannel.send({
+      body: `ltx${latex}`,
+      userId: user.user_id
+    })
+    handleClearForm();
+  };
+
   let messagesComponents = messages.map(message => {
     return(
+      // renders latex
+      // <StaticMathField>{message.body}</StaticMathField>
+
+      // renders images and text
       <Message
         key={message.messageId}
         body={message.body}
@@ -124,11 +142,11 @@ const ChatContainer = (props) => {
   }, this);
 
   return(
-    <div>
-      <div className='callout chat' id='chatWindow'>
+    <div className="grid-x">
+      <div className='callout chat cell medium-12' id='chatWindow'>
         {messagesComponents}
       </div>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="cell medium-12">
         <TextFieldWithSubmit
           content={body}
           name='message'
@@ -136,30 +154,46 @@ const ChatContainer = (props) => {
         />
       </form>
 
-      <form onSubmit={handleImageFormSubmit}>
-        <Dropzone onDrop={handleFileUpload}>
-          {({ getRootProps, getInputProps }) => (
-            <section>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <h5 id="drop-zone" className="cell callout">
-                  Click here or drag and drop to upload a image of your work
-                </h5>
-              </div>
-            </section>
-          )}
-        </Dropzone>
+      <div>
+        <form onSubmit={handleImageFormSubmit} className='grid-x cell medium-6'>
+          <Dropzone onDrop={handleFileUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <h5 id="drop-zone" className="cell callout">
+                    Click here or drag and drop to upload a image of your work
+                  </h5>
+                </div>
+              </section>
+            )}
+          </Dropzone>
+            
+          {photoUploaded}
           
-        {photoUploaded}
-        
-        <div className="grid-x align-center">
-          <input
-            type="submit"
-            value="Chat"
-          />
-        </div>
-      </form>
+          <div className="grid-x align-center">
+            <input
+              type="submit"
+              value="Send image"
+              />
+          </div>
+        </form>
+      </div>
       
+      <div className='grid-x cell medium-6'>
+        <EditableMathField
+          latex={latex}
+          onChange={(mathField) => {
+            setLatex(mathField.latex())
+          }}
+        />
+        <form onSubmit={handleEquationFormSubmit} className="grid-x align-center">
+          <input
+                type="submit"
+                value="send equation"
+                />
+        </form>
+      </div>
     </div>
   );
 }

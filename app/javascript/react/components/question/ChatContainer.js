@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Message from '../Message';
 import TextFieldWithSubmit from '../TextFieldWithSubmit';
+import Dropzone from "react-dropzone";
+
 
 const ChatContainer = (props) => {
   const [user, setUser] = useState({})
   const [messages, setMessages] = useState([])
   const [body, setBody] = useState("")
+  const [imageUpload, setImageUpload] = useState({
+    image: ""
+  });
 
   useEffect(() => {
 
@@ -60,9 +65,55 @@ const ChatContainer = (props) => {
 
     handleClearForm();
   }
+  const handleImageFormSubmit = (event) => {
+    event.preventDefault();
+    let body = new FormData();
+    body.append("image", imageUpload.image);
+    // the classroom ID is currently hardcoded
+    fetch(`/api/v1/classrooms/1/questions/${props.match.params.id}/messages`, {
+      method: "POST",
+      body: body,
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        Accept: "image/jpeg",
+        Accept: "image/jpg",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then((response) => response.json())
+      .then((body) => {
+        debugger
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  };
 
   const handleMessageChange = (event) => {
     setBody(event.target.value)
+  }
+
+  const handleFileUpload = (acceptedFiles) => {
+    setImageUpload({
+      ...imageUpload,
+      image: acceptedFiles[0],
+    });
+  };
+  
+  let photoUploaded = null;
+  if (imageUpload.image != "") {
+    photoUploaded = (
+      <div>
+        <h5>Photo Uploaded: {imageUpload.image.path}</h5>
+      </div>
+    );
   }
 
   let messagesComponents = messages.map(message => {
@@ -86,6 +137,31 @@ const ChatContainer = (props) => {
           handlerFunction={handleMessageChange}
         />
       </form>
+
+      <form onSubmit={handleImageFormSubmit}>
+        <Dropzone onDrop={handleFileUpload}>
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <h5 id="drop-zone" className="cell callout">
+                  Click here or drag and drop to upload a image of your work
+                </h5>
+              </div>
+            </section>
+          )}
+        </Dropzone>
+          
+        {photoUploaded}
+        
+        <div className="grid-x align-center">
+          <input
+            type="submit"
+            value="Chat"
+          />
+        </div>
+      </form>
+      
     </div>
   );
 }

@@ -3,7 +3,6 @@ import React from "react"
 import ChatContainer from './ChatContainer'
 
 const QuestionShowContainer = (props) => {
-  debugger
   return(
     <div>
       <ChatContainer

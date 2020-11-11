@@ -118,6 +118,11 @@ const ChatContainer = (props) => {
 
   const handleEquationFormSubmit = (event) => {
     event.preventDefault();
+    App.chatChannel.send({
+      body: `ltx${latex}`,
+      userId: user.user_id
+    })
+    handleClearForm();
   };
 
   let messagesComponents = messages.map(message => {
@@ -180,7 +185,6 @@ const ChatContainer = (props) => {
             setLatex(mathField.latex())
           }}
         />
-        <p>{latex}</p>
         <form onSubmit={handleEquationFormSubmit}>
           <input
                 type="submit"

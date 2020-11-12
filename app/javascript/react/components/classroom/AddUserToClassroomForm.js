@@ -56,7 +56,7 @@ const AddUserToClassroomForm = (props) => {
         </fieldset>
         
         <input
-          className="button"
+          className="button light-text large light-button"
           type="submit" 
           value="Add User" />
       </form>

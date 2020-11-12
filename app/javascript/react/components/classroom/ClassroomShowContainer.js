@@ -66,11 +66,11 @@ const ClassroomShowContainer = (props) => {
   return(
     <div className="grid-x page">
       <div className="cell medium-3 secondary">
-        <ul className="light-text">
+        <ul className="light-text no-bullet">
           Teachers:
           {TeachersList}
         </ul>
-        <ul className="light-text">
+        <ul className="light-text no-bullet">
           Students:
           {StudentsList}
         </ul>

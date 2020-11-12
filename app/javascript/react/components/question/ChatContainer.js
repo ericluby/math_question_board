@@ -13,7 +13,8 @@ const ChatContainer = (props) => {
   const [imageUpload, setImageUpload] = useState({
     image: ""
   });
-  const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2')
+  const [latex, setLatex] = useState('x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}')
+  // const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2')
 
   useEffect(() => {
 
@@ -142,7 +143,7 @@ const ChatContainer = (props) => {
   }, this);
 
   return(
-    <div className="grid-x">
+    <div className="grid-x row align-center">
       <div className='callout chat cell medium-12' id='chatWindow'>
         {messagesComponents}
       </div>
@@ -154,14 +155,14 @@ const ChatContainer = (props) => {
         />
       </form>
 
-      <div>
+      <div className="row">
         <form onSubmit={handleImageFormSubmit} className='grid-x cell medium-6'>
-          <Dropzone onDrop={handleFileUpload}>
+          <Dropzone onDrop={handleFileUpload} id="drop-zone">
             {({ getRootProps, getInputProps }) => (
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  <h5 id="drop-zone" className="cell callout">
+                  <h5 className="cell callout">
                     Click here or drag and drop to upload a image of your work
                   </h5>
                 </div>
@@ -171,26 +172,30 @@ const ChatContainer = (props) => {
             
           {photoUploaded}
           
-          <div className="grid-x align-center">
+          <div className="grid-x">
             <input
               type="submit"
               value="Send image"
+              className="button light-text large"
               />
           </div>
         </form>
       </div>
       
-      <div className='grid-x cell medium-6'>
+      <div className='grid-x row align-center' >
         <EditableMathField
+          className="white-BG"
           latex={latex}
           onChange={(mathField) => {
             setLatex(mathField.latex())
           }}
         />
-        <form onSubmit={handleEquationFormSubmit} className="grid-x align-center">
+        <form onSubmit={handleEquationFormSubmit} className="grid-x align-middle">
           <input
                 type="submit"
+                className="button light-text large"
                 value="send equation"
+                style={{height: "100%"}}
                 />
         </form>
       </div>

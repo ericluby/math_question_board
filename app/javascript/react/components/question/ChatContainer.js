@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Message from '../Message';
 import TextFieldWithSubmit from '../TextFieldWithSubmit';
 import Dropzone from "react-dropzone";
@@ -227,14 +228,15 @@ const ChatContainer = (props) => {
         </form>
       </div>
       <div>
-      <form onSubmit={changeStatusOnSubmit} className="grid-x align-middle">
+        <form onSubmit={changeStatusOnSubmit} className="grid-x align-middle">
           <input
-                type="submit"
-                className="button light-text large"
-                value="Mark Question As Complete"
-                />
+            type="submit"
+            className="button light-text large"
+            value="Mark Question As Complete"
+          />
         </form>
       </div>
+      <Link className="button light-text large" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
     </div>
   );
 }

@@ -68,13 +68,21 @@ r16 = Roster.create(user: u8, classroom: cr4, role: "student")
 Question.destroy_all
 q1 = Question.create(user: u1, classroom: cr2, status: "new", title: "distributive property")
 q2 = Question.create(user: u2, classroom: cr2, status: "new", title: "triangle area")
+q3 = Question.create(user: u3, classroom: cr2, status: "new", title: "graphing points on a coordinate plane")
+q4 = Question.create(user: u4, classroom: cr2, status: "new", title: "factoring")
+q5 = Question.create(user: u5, classroom: cr2, status: "new", title: "probability and rolling dice")
+q6 = Question.create(user: u4, classroom: cr2, status: "new", title: "fraction division")
+q7 = Question.create(user: u3, classroom: cr4, status: "new", title: "How do I find the x-intercept")
+q8 = Question.create(user: u2, classroom: cr4, status: "new", title: "Can I distribute exponents")
+q9 = Question.create(user: u1, classroom: cr4, status: "new", title: "How can i find where two lines intersect")
+q10 = Question.create(user: u2, classroom: cr4, status: "new", title: "Quadratic formula")
 
 # messages
 Message.destroy_all
 m1 = Message.create(user: u1, question: q1, body: "Greetings!")
 m2 = Message.create(user: u2, question: q1, body: "Hello!")
 m3 = Message.create(user: u1, question: q1, body: "How can I help you?")
-m4 = Message.create(user: u1, question: q1, body: "I forget what gets distributed")
+m4 = Message.create(user: u1, question: q1, body: "I forget how to distribute when we have a number outside of parentheses")
 m5 = Message.create(user: u2, question: q2, body: "Yoyo!")
 m6 = Message.create(user: u1, question: q2, body: "whatsup!")
 m7 = Message.create(user: u1, question: q2, body: "How do I find the area of a triangle again? I forgot the formula")

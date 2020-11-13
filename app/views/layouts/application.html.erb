@@ -9,16 +9,16 @@
 </head>
 <body>
   
-  <nav class="top-bar secondary">
-    <h1><a href="/" class="light-text" id="link">Math Mentors</a></h1>
+  <nav class="topbar-color grid-x top-bar">
+    <h1><a href="/" class="light-text" id="title">Math Mentors</a></h1>
 
     <section class="top-bar-section">
       <ul id="sign-in-background" class="right no-bullet">
         <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "light-text-color sign", id: "link" %></li>
+          <li class="inline-block"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "sign", id: "link" %></li>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path, class: "light-text-color sign", id: "link" %></li>
-          <li><%= link_to 'Sign In', new_user_session_path, class: "light-text-color sign", id: "link" %></li>
+          <li class="inline-block"><%= link_to 'Sign Up', new_user_registration_path, class: "sign", id: "link" %></li>
+          <li class="inline-block"><%= link_to 'Sign In', new_user_session_path, class: "sign", id: "link" %></li>
         <%- end -%>
       </ul>
     </section>

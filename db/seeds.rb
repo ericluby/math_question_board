@@ -74,8 +74,7 @@ q5 = Question.create(user: u5, classroom: cr2, status: "new", title: "probabilit
 q6 = Question.create(user: u4, classroom: cr2, status: "new", title: "fraction division")
 q7 = Question.create(user: u3, classroom: cr4, status: "new", title: "How do I find the x-intercept")
 q8 = Question.create(user: u2, classroom: cr4, status: "new", title: "Can I distribute exponents")
-q9 = Question.create(user: u1, classroom: cr4, status: "new", title: "How can i find where two lines intersect")
-q10 = Question.create(user: u2, classroom: cr4, status: "new", title: "Quadratic formula")
+q9 = Question.create(user: u2, classroom: cr4, status: "new", title: "Quadratic formula")
 
 # messages
 Message.destroy_all

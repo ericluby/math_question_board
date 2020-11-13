@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Message from '../Message';
 import TextFieldWithSubmit from '../TextFieldWithSubmit';
 import Dropzone from "react-dropzone";
@@ -129,12 +130,39 @@ const ChatContainer = (props) => {
     handleClearForm();
   };
 
+  const changeStatusOnSubmit = (event) => {
+    event.preventDefault();
+
+    fetch(`/api/v1/classrooms/${props.classroomId}/questions/${props.questionId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        status: "closed"
+        }),
+      credentials: 'same-origin',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      debugger
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`)
+    );
+  }
+
   let messagesComponents = messages.map(message => {
     return(
-      // renders latex
-      // <StaticMathField>{message.body}</StaticMathField>
-
-      // renders images and text
       <Message
         key={message.messageId}
         body={message.body}
@@ -199,6 +227,16 @@ const ChatContainer = (props) => {
                 />
         </form>
       </div>
+      <div>
+        <form onSubmit={changeStatusOnSubmit} className="grid-x align-middle">
+          <input
+            type="submit"
+            className="button light-text large"
+            value="Mark Question As Complete"
+          />
+        </form>
+      </div>
+      <Link className="button light-text large" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
     </div>
   );
 }

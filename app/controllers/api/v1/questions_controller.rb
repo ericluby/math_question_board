@@ -18,4 +18,11 @@ class Api::V1::QuestionsController < ApiController
 
   end
 
+  def update
+    question = Question.find(params["id"])
+    question.status = params["status"]
+    question.save
+    
+    render json: question
+  end
 end

@@ -5,9 +5,9 @@ const ClassroomTile = (props) => {
   return(
     <div className="cell">
         <Link to={`/classrooms/${props.data.id}`} >
-          <div className="card">
-            <p>Subject: {props.data.subject}</p>
-            <p>Term: {props.data.term}</p>
+          <div className="card class-tile hover-zoom">
+            <p>{props.data.subject}</p>
+            <p><b>Term:</b> {props.data.term}</p>
           </div>
       </Link>
     </div>

@@ -1,0 +1,40 @@
+@import "./color_variables";
+
+.page-instructions {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.class-tile {
+  text-align: center;
+  padding: 1rem;
+  filter: drop-shadow((rgb(147, 147, 147)) 8px 8px 4px);
+}
+
+.index-background {
+  background-color: #EDEDED;
+}
+
+.classroom-form-background {
+  background-color: rgb(159, 159, 159);
+}
+
+.hover-zoom {
+  transition: all .1s ease-in-out;
+}
+
+.hover-zoom:hover{
+  transform: scale(1.1);
+}
+
+.hover-zoom2 {
+  transition: all .2s ease-in-out;
+}
+
+.hover-zoom2:hover{
+  transform: scale(1.05);
+}
+
+.button-radius {
+  border-radius: 8px;
+}

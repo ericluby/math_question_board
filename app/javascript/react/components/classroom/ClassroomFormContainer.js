@@ -50,7 +50,7 @@ const ClassroomFormContainer = (props) => {
           />
         </label>
         <input
-          className="button light-text large"
+          className="button light-text large hover-zoom2"
           type="submit" 
           value="Create New Classroom" />
       </form>

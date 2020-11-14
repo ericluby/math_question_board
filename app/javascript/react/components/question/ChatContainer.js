@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Message from '../Message';
-import TextFieldWithSubmit from '../TextFieldWithSubmit';
 import Dropzone from "react-dropzone";
 import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
 
@@ -59,7 +58,7 @@ const ChatContainer = (props) => {
     setBody("")
   }
 
-  const handleFormSubmit = (event) => {
+  const handleTextFormSubmit = (event) => {
     event.preventDefault();
     // Send info to the receive method on the back end
     App.chatChannel.send({
@@ -185,21 +184,56 @@ const ChatContainer = (props) => {
     setChatInputType("equation")
   }
 
-  let inputComponents = () => {
+  let chatSubmit = () => {
     if(chatInputType === "text"){
       return(
-        <form onSubmit={handleFormSubmit} className="cell medium-10">
-          <TextFieldWithSubmit
-            content={body}
-            name='message'
-            handlerFunction={handleMessageChange}
-          />
-        </form>
+        <input 
+          type='submit' 
+          value='Chat' 
+          onClick={handleTextFormSubmit} 
+          className='light-text input-group-button' 
+        />
       )
     }else if(chatInputType === "image"){
       return(
+        <input
+          type="submit"
+          value="Send image"
+          onClick={handleImageFormSubmit}
+          className="light-text input-group-button"
+        />
+      )
+    }else if(chatInputType === "equation"){
+      return(
+        <input
+          type="submit"
+          value="send equation"
+          onClick={handleEquationFormSubmit}
+          className="light-text input-group-button"
+          style={{height: "100%"}}
+        />
+      )
+    }
+  }
+
+  let chatInput = () => {
+    // text input
+    if(chatInputType === "text"){
+      return(
+        <input
+          className='input-group-field'
+          name='message'
+          onChange={handleMessageChange}
+          type='text'
+          value={body} 
+        />
+      );
+    }
+    // image input
+    else if(chatInputType === "image"){
+      return(
         <div className="row grid-x">
-          <form onSubmit={handleImageFormSubmit} className='grid-x cell medium-10'>
+          <form onSubmit={handleImageFormSubmit} className='grid-x cell medium-10 input-group-field'>
             <Dropzone onDrop={handleFileUpload} id="drop-zone">
               {({ getRootProps, getInputProps }) => (
                 <section>
@@ -212,37 +246,30 @@ const ChatContainer = (props) => {
                 </section>
               )}
             </Dropzone>
-              
             {photoUploaded}
-            
-            <div className="grid-x">
-              <input
-                type="submit"
-                value="Send image"
-                className="button light-text large"
-                />
-            </div>
           </form>
         </div>
       )
-    }else if(chatInputType === "equation"){
+    }
+    // equation input
+    else if(chatInputType === "equation"){
       return(
         <div className='grid-x row align-center' >
           <EditableMathField
-            className="white-BG"
+            className="white-BG input-group-field"
             latex={latex}
             onChange={(mathField) => {
               setLatex(mathField.latex())
             }}
           />
-          <form onSubmit={handleEquationFormSubmit} className="grid-x align-middle">
+          {/* <form onSubmit={handleEquationFormSubmit} className="grid-x align-middle">
             <input
                   type="submit"
-                  className="button light-text large"
+                  className="button light-text large input-group-button"
                   value="send equation"
                   style={{height: "100%"}}
                   />
-          </form>
+          </form> */}
         </div>
       )
     }
@@ -250,20 +277,6 @@ const ChatContainer = (props) => {
 
   return(
     <div className="grid-x row align-center">
-      <div className='callout chat cell chat-box medium-10 style={{margin-top: "16px"}}' id='chatWindow' >
-        {messagesComponents}
-      </div>
-
-      <div>
-        <button onClick={changeToText}>Text</button>
-        <button onClick={changeToImage}>Image</button>
-        <button onClick={changeToEquation}>Equation</button>
-      </div>
-
-      <div>
-        {inputComponents()}
-      </div>
-
       <div>
         <form onSubmit={changeStatusOnSubmit} className="grid-x align-middle">
           <input
@@ -273,7 +286,32 @@ const ChatContainer = (props) => {
           />
         </form>
       </div>
-      <Link className="button light-text large" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
+      <div>
+        <Link className="button light-text large" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
+      </div>
+
+      <div className='callout chat cell chat-box medium-10 style={{margin-top: "16px"}}' id='chatWindow' >
+        {messagesComponents}
+      </div>
+
+      <div className="input-group">
+        <button onClick={changeToText} className="input-group-label">Text</button>
+        <button onClick={changeToImage} className="input-group-label">Image</button>
+        <button onClick={changeToEquation} className="input-group-label">Equation</button>
+        {chatInput()}
+        {chatSubmit()}
+        {/* <input className="input-group-field" type="number"/>
+        
+        <div className="input-group-button">
+          <input type="submit" className="button" value="Submit"/>
+        </div> */}
+      </div>
+
+      <div>
+       
+      </div>
+
+
     </div>
   );
 }

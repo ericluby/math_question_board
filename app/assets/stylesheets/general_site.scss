@@ -1,0 +1,67 @@
+@import "./color_variables";
+
+.secondary {
+  background-color: #14208e;
+}
+
+.light-text {
+  color: white
+}
+
+#app {
+  height: 100vh;
+}
+
+.white-BG {
+  background-color: white;
+}
+
+#drop-zone {
+  margin-bottom: 0px;
+}
+
+a:hover {
+  text-decoration: underline;
+  color:black;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.top-margin {
+  margin-top: 1rem;
+}
+
+.bottom-margin {
+  margin-bottom: 1rem;
+}
+
+.min-height {
+  height: 60px;
+}
+
+.placeholder-text {
+  color:#cacaca
+}
+
+.card-section-padding {
+  padding: 0;
+}
+
+.side-margins {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.center-items {
+  justify-content: center;
+}
+
+.center-text {
+  align-items: center;
+}
+
+.no-bottom-margins {
+  margin-bottom: 0;
+}

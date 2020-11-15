@@ -1,5 +1,5 @@
 import React from 'react';
-import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
+import { addStyles, StaticMathField } from 'react-mathquill'
 
 
 const isImgURL = /^http\S*\.(png|jpg|jpeg|gif)$/i;
@@ -15,7 +15,9 @@ const Message = (props) => {
   }else if(isLatex.test(props.body)){
     const equation = props.body.substring(3);
     return(
-        <StaticMathField>{equation}</StaticMathField>
+        <div>
+          <StaticMathField>{equation}</StaticMathField>
+        </div>
     )
   }else{
     return(

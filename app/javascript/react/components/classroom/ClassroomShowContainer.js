@@ -26,14 +26,14 @@ const ClassroomShowContainer = (props) => {
   const teachers = usersWithRoles.filter(user => user.role === "teacher")
   const TeachersList = teachers.map((user, index) => {
     return (
-      <li key={index} >{user.user.first_name} {user.user.last_name} </li>
+      <li key={index} className="side-bar-names-text light-text ">{user.user.first_name} {user.user.last_name} </li>
     )
   })
 
   const students = usersWithRoles.filter(user => user.role === "student")
   const StudentsList = students.map((user, index) => {
     return (
-      <li key={index} >{user.user.first_name} {user.user.last_name} </li>
+      <li key={index} className="side-bar-names-text light-text ">{user.user.first_name} {user.user.last_name} </li>
     )
   })
 
@@ -65,13 +65,17 @@ const ClassroomShowContainer = (props) => {
 
   return(
     <div className="grid-x page">
-      <div className="cell medium-3 secondary">
-        <ul className="light-text no-bullet">
-          Teachers:
+      <div className="cell medium-3 side-bar-general-background">
+        <ul className="no-bullet side-bar-user-background" >
+          <p className="light-text side-bar-role-text">
+            Teachers:
+          </p>
           {TeachersList}
         </ul>
-        <ul className="light-text no-bullet">
+        <ul className="light-text no-bullet side-bar-user-background">
+          <p className="side-bar-role-text">
           Students:
+          </p>
           {StudentsList}
         </ul>
         <div>
@@ -81,7 +85,7 @@ const ClassroomShowContainer = (props) => {
           />
         </div>
       </div>
-      <div className="cell medium-9">
+      <div className="cell medium-9 show-background">
         <QuestionIndexContainer
           classroomId={props.match.params.id}
         />

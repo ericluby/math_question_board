@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Message from '../Message';
-import TextFieldWithSubmit from '../TextFieldWithSubmit';
 import Dropzone from "react-dropzone";
-import { addStyles, EditableMathField, StaticMathField } from 'react-mathquill'
+import { addStyles, EditableMathField } from 'react-mathquill'
 
 addStyles()
 
@@ -15,7 +13,7 @@ const ChatContainer = (props) => {
     image: ""
   });
   const [latex, setLatex] = useState('x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}')
-  // const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2')
+  const [chatInputType, setChatInputType] = useState("text")
 
   useEffect(() => {
 
@@ -45,7 +43,8 @@ const ChatContainer = (props) => {
         received: data => {
           // Data broadcasted from the chat channel
           console.log(data)
-          handleMessageReceipt(data)
+          handleMessageReceipt(data)          
+          scrollToBottom()
         }
       }
     );
@@ -59,7 +58,7 @@ const ChatContainer = (props) => {
     setBody("")
   }
 
-  const handleFormSubmit = (event) => {
+  const handleTextFormSubmit = (event) => {
     event.preventDefault();
     // Send info to the receive method on the back end
     App.chatChannel.send({
@@ -67,6 +66,7 @@ const ChatContainer = (props) => {
       userId: user.user_id
     })
     handleClearForm();
+    scrollToBottom()
   }
 
   const handleImageFormSubmit = (event) => {
@@ -99,6 +99,7 @@ const ChatContainer = (props) => {
       setImageUpload({
         image: ""
       })
+      scrollToBottom()
     };
 
   const handleMessageChange = (event) => {
@@ -111,15 +112,6 @@ const ChatContainer = (props) => {
       image: acceptedFiles[0],
     });
   };
-  
-  let photoUploaded = null;
-  if (imageUpload.image != "") {
-    photoUploaded = (
-      <div>
-        <h5>Photo Uploaded: {imageUpload.image.path}</h5>
-      </div>
-    );
-  }
 
   const handleEquationFormSubmit = (event) => {
     event.preventDefault();
@@ -128,38 +120,10 @@ const ChatContainer = (props) => {
       userId: user.user_id
     })
     handleClearForm();
+    scrollToBottom()
   };
 
-  const changeStatusOnSubmit = (event) => {
-    event.preventDefault();
-
-    fetch(`/api/v1/classrooms/${props.classroomId}/questions/${props.questionId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        status: "closed"
-        }),
-      credentials: 'same-origin',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      debugger
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`)
-    );
-  }
+  
 
   let messagesComponents = messages.map(message => {
     return(
@@ -170,73 +134,153 @@ const ChatContainer = (props) => {
     )
   }, this);
 
+  const changeToText = (event) => {
+    event.preventDefault();
+    setChatInputType("text")
+  }
+
+  const changeToImage = (event) => {
+    event.preventDefault();
+    setChatInputType("image")
+  }
+
+  const changeToEquation = (event) => {
+    event.preventDefault();
+    setChatInputType("equation")
+  }
+
+
+  if (imageUpload.image != "") {
+    photoUploaded = (
+      <div>
+        <p>Photo Uploaded: {imageUpload.image.path}</p>
+      </div>
+    );
+  }
+  
+  let photoUploaded = null;
+  if(imageUpload.image === ""){
+    photoUploaded = (
+    <div>
+      {/* <p className="no-margin placeholder-text">Click here or drag and drop to upload an image</p> */}
+      <p className="no-margin placeholder-text">Insert an image</p>
+    </div>
+    )
+  }else if (imageUpload.image !== ""){
+    photoUploaded = (
+    <div>
+      {/* <p className="no-margin placeholder-text">Photo Uploaded: {imageUpload.image.path}</p> */}
+      <p className="no-margin placeholder-text">{imageUpload.image.path}</p>
+    </div>
+    )
+  }
+
+  let chatSubmit = () => {
+    if(chatInputType === "text"){
+      return(
+        <input 
+          type='submit' 
+          value='Send' 
+          onClick={handleTextFormSubmit} 
+          className='light-text input-group-button min-height secondary' 
+        />
+      )
+    }else if(chatInputType === "image"){
+      return(
+        <input
+          type="submit"
+          value="Send"
+          onClick={handleImageFormSubmit}
+          className="light-text input-group-button min-height secondary"
+        />
+      )
+    }else if(chatInputType === "equation"){
+      return(
+        <input
+          type="submit"
+          value="Send"
+          onClick={handleEquationFormSubmit}
+          className="light-text input-group-button min-height secondary"
+          style={{height: "100%"}}
+        />
+      )
+    }
+  }
+
+  let chatInput = () => {
+    // text input
+    if(chatInputType === "text"){
+      return(
+        <input
+          className='input-group-field min-height'
+          name='message'
+          onChange={handleMessageChange}
+          type='text'
+          value={body} 
+          placeholder="Type your text here"
+        />
+      );
+    }
+    // image input
+    else if(chatInputType === "image"){
+      return(
+        <div className="full-width">
+          <form onSubmit={handleImageFormSubmit} className='input-group-field min-height'>
+            <Dropzone onDrop={handleFileUpload} id="drop-zone">
+              {({ getRootProps, getInputProps }) => (
+                <section className="full-width">
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <p className="callout no-margin">
+                      {photoUploaded}
+                    </p>
+                  </div>
+                </section>
+              )}
+            </Dropzone>
+            
+          </form>
+        </div>
+      )
+    }
+    // equation input
+    else if(chatInputType === "equation"){
+      return(
+        <div className='grid-x row align-center full-width' >
+          <EditableMathField
+            className="white-BG input-group-field min-height"
+            latex={latex}
+            onChange={(mathField) => {
+              setLatex(mathField.latex())
+            }}
+          />
+        </div>
+      )
+    }
+  };
+
+  const scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   return(
-    <div className="grid-x row align-center">
-      <div className='callout chat cell medium-12' id='chatWindow'>
+    <div className="grid-x row align-center show-background">
+      <div className='callout chat cell chat-box medium-11' id='chatWindow' >
         {messagesComponents}
       </div>
-      <form onSubmit={handleFormSubmit} className="cell medium-12">
-        <TextFieldWithSubmit
-          content={body}
-          name='message'
-          handlerFunction={handleMessageChange}
-        />
-      </form>
 
-      <div className="row">
-        <form onSubmit={handleImageFormSubmit} className='grid-x cell medium-6'>
-          <Dropzone onDrop={handleFileUpload} id="drop-zone">
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <h5 className="cell callout">
-                    Click here or drag and drop to upload a image of your work
-                  </h5>
-                </div>
-              </section>
-            )}
-          </Dropzone>
-            
-          {photoUploaded}
-          
-          <div className="grid-x">
-            <input
-              type="submit"
-              value="Send image"
-              className="button light-text large"
-              />
-          </div>
-        </form>
+      <div className="input-group min-height top-margin side-margins">
+        <button onClick={changeToText} className="input-group-label min-height">Text</button>
+        <button onClick={changeToImage} className="input-group-label min-height">Image</button>
+        <button onClick={changeToEquation} className="input-group-label min-height">Equation</button>
+        {chatInput()}
+        {chatSubmit()}
       </div>
-      
-      <div className='grid-x row align-center' >
-        <EditableMathField
-          className="white-BG"
-          latex={latex}
-          onChange={(mathField) => {
-            setLatex(mathField.latex())
-          }}
-        />
-        <form onSubmit={handleEquationFormSubmit} className="grid-x align-middle">
-          <input
-                type="submit"
-                className="button light-text large"
-                value="send equation"
-                style={{height: "100%"}}
-                />
-        </form>
+      <div 
+        style={{ float:"left", clear: "both" }}
+        ref={(el) => { this.messagesEnd = el; }}
+      >
       </div>
-      <div>
-        <form onSubmit={changeStatusOnSubmit} className="grid-x align-middle">
-          <input
-            type="submit"
-            className="button light-text large"
-            value="Mark Question As Complete"
-          />
-        </form>
-      </div>
-      <Link className="button light-text large" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
     </div>
   );
 }

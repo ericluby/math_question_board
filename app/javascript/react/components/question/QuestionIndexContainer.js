@@ -44,7 +44,7 @@ const QuestionIndexContainer = (props) => {
     })
     .then(response => response.json())
     .then(body => {
-      setQuestions([...questions, body]);
+      setQuestions([body, ...questions]);
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -66,9 +66,7 @@ const QuestionIndexContainer = (props) => {
         />
       </div>
       <div className="grid-container">
-        <div className="grid-x grid-margin-x small-up-2 medium-up-3">
         {questionList}
-        </div>
       </div>
     </div>
   )

@@ -31,10 +31,10 @@ u8 = User.create(email: "keen@example.com", password: "123456", first_name: "Dov
 
 # classrooms
 Classroom.destroy_all
-cr1 = Classroom.create(subject: "5th grade math", term: "2020-2021")
-cr2 = Classroom.create(subject: "6th grade math", term: "2020-2021")
-cr3 = Classroom.create(subject: "7th grade math", term: "2020-2021")
-cr4 = Classroom.create(subject: "8th grade math", term: "2020-2021")
+cr1 = Classroom.create(subject: "5th Grade Math", term: "2020-2021")
+cr2 = Classroom.create(subject: "6th Grade Math", term: "2020-2021")
+cr3 = Classroom.create(subject: "7th Grade Math", term: "2020-2021")
+cr4 = Classroom.create(subject: "8th Grade Math", term: "2020-2021")
 cr5 = Classroom.create(subject: "Geometry", term: "Fall 2020")
 cr6 = Classroom.create(subject: "Algebra", term: "Fall 2020")
 cr7 = Classroom.create(subject: "Trigonometry", term: "Fall 2020")
@@ -66,15 +66,15 @@ r16 = Roster.create(user: u8, classroom: cr4, role: "student")
 
 # questions
 Question.destroy_all
-q1 = Question.create(user: u1, classroom: cr2, status: "new", title: "distributive property")
-q2 = Question.create(user: u2, classroom: cr2, status: "new", title: "triangle area")
-q3 = Question.create(user: u3, classroom: cr2, status: "new", title: "graphing points on a coordinate plane")
-q4 = Question.create(user: u4, classroom: cr2, status: "new", title: "factoring")
-q5 = Question.create(user: u5, classroom: cr2, status: "new", title: "probability and rolling dice")
-q6 = Question.create(user: u4, classroom: cr2, status: "new", title: "fraction division")
-q7 = Question.create(user: u3, classroom: cr4, status: "new", title: "How do I find the x-intercept")
-q8 = Question.create(user: u2, classroom: cr4, status: "new", title: "Can I distribute exponents")
-q9 = Question.create(user: u2, classroom: cr4, status: "new", title: "Quadratic formula")
+q1 = Question.create(user: u1, classroom: cr2, status: "New", title: "Distributive Property")
+q2 = Question.create(user: u2, classroom: cr2, status: "New", title: "Triangle Area")
+q3 = Question.create(user: u3, classroom: cr2, status: "New", title: "Coordinate Plane Graphing")
+q4 = Question.create(user: u4, classroom: cr2, status: "New", title: "Factoring Expressions")
+q5 = Question.create(user: u5, classroom: cr2, status: "New", title: "Probability of Dice")
+q6 = Question.create(user: u4, classroom: cr2, status: "New", title: "Fraction Division")
+q7 = Question.create(user: u3, classroom: cr4, status: "New", title: "Finding X-Intercept")
+q8 = Question.create(user: u2, classroom: cr4, status: "New", title: "Distributing Exponents")
+q9 = Question.create(user: u2, classroom: cr4, status: "New", title: "Quadratic Formula")
 
 # messages
 Message.destroy_all

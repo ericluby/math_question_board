@@ -24,8 +24,8 @@ const ClassroomFormContainer = (props) => {
   }
 
   return(
-    <div>
-      <p>Create a New Classroom below</p>
+    <div className="dark-text">
+      <p className="dark-text">Create a New Classroom below</p>
       <form onSubmit={handleSubmit} >
         <label>
           Classroom Subject:
@@ -49,10 +49,13 @@ const ClassroomFormContainer = (props) => {
             value={newClassroom.term}
           />
         </label>
-        <input
-          className="button light-text large"
-          type="submit" 
-          value="Create New Classroom" />
+        <div className="center-text">
+          <input
+            className="button light-text large hover-zoom2"
+            type="submit" 
+            value="Create New Classroom" 
+          />
+        </div>
       </form>
     </div>
   )

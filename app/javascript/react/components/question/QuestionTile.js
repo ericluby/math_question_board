@@ -5,8 +5,8 @@ const QuestionTile = (props) => {
   return(
     <div className="cell">
       <Link to={`/classrooms/${props.data.classroom.id}/questions/${props.data.id}`} >
-        <div className="card">
-          <div className="card-section">
+        <div className="card class-tile hover-zoom2 card-section-padding">
+          <div className="card-section card-section-padding">
             <h4 className="text-center">{props.data.title}</h4>
             <p>Status: {props.data.status}</p>
             <p>{props.data.created_at}</p>        

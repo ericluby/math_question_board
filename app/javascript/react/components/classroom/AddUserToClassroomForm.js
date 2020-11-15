@@ -35,9 +35,9 @@ const AddUserToClassroomForm = (props) => {
 
   return(
     <div>
-      <p className="light-text">Create a New Classroom below</p>
+      <p className="dark-text classroom-creation-form">Add new users to the classroom!</p>
       <form onSubmit={handleSubmit} >
-        <label className="light-text"> Add new users to the classroom here!
+        <label className="dark-text">
           <input
             type="email"
             name="email"
@@ -48,17 +48,18 @@ const AddUserToClassroomForm = (props) => {
           />
         </label>
 
-        <fieldset>
-          <legend className="light-text">Type of User</legend>
-          <input onChange={handleChange} type="radio" name="role" value="teacher" id="teacher" required/><label htmlFor="teacher" className="light-text">Teacher</label>
-          <input onChange={handleChange} type="radio" name="role" value="student" id="student"/><label htmlFor="student"className="light-text">Student</label>
-          <input onChange={handleChange} type="radio" name="role" value="tutor" id="tutor"/><label htmlFor="tutor"className="light-text">Tutor</label>
+        <fieldset className="center-text">
+          <input onChange={handleChange} type="radio" name="role" value="teacher" id="teacher" required/><label htmlFor="teacher" className="dark-text">Teacher</label>
+          <input onChange={handleChange} type="radio" name="role" value="student" id="student"/><label htmlFor="student"className="dark-text">Student</label>
+          <input onChange={handleChange} type="radio" name="role" value="tutor" id="tutor"/><label htmlFor="tutor"className="dark-text">Tutor</label>
         </fieldset>
-        
-        <input
-          className="button light-text large light-button"
-          type="submit" 
-          value="Add User" />
+        <div className="center-text">
+          <input
+            className="button light-text large"
+            type="submit" 
+            value="Add User" 
+          />
+        </div>
       </form>
     </div>
   )

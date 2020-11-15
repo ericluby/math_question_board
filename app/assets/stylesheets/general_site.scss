@@ -1,9 +1,5 @@
 @import "./color_variables";
 
-// .page {
-//   height: 100%;
-// }
-
 .secondary {
   background-color: #14208e;
 }
@@ -27,4 +23,24 @@
 a:hover {
   text-decoration: underline;
   color:black;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.top-margin {
+  margin-top: 1rem;
+}
+
+.min-height {
+  min-height: 60px;
+}
+
+.placeholder-text {
+  color:#cacaca
+}
+
+.card-section-padding {
+  padding: 0;
 }

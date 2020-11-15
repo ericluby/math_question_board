@@ -50,10 +50,13 @@ const QuestionFormContainer = (props) => {
               value={newQuestion.questionBody}>
             </textarea>
           </label>
-          <input
-            className="button light-text large"
-            type="submit" 
-            value="Submit New Question" />
+          <div className="center-text">
+            <input
+              className="button light-text large"
+              type="submit" 
+              value="Submit New Question" 
+            />
+          </div>
         </form>
       </div>
     </div>

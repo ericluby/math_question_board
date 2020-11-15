@@ -1,0 +1,49 @@
+@import "./color_variables";
+
+.side-bar-role-text {
+  padding-left: 8px;
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 0;
+}
+
+.side-bar-names-text {
+  padding-left: 8px;
+  margin-bottom: 0;
+}
+
+.side-bar-user-background {
+  background-color: #14208e;
+  margin-bottom: 0;
+  padding-bottom: 15px;
+}
+
+.side-bar-general-background {
+  background-color: white;
+}
+
+.show-background {
+  background-color: #EDEDED;
+}
+
+.dark-text {
+  color:black
+}
+
+.classroom-creation-form {
+  margin-top: 8px;
+  text-align: center;
+  font-size: large;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.margins {
+  margin: 16px;
+}
+
+.full-width {
+  width: 100%
+}

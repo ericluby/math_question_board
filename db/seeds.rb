@@ -66,7 +66,6 @@ r16 = Roster.create(user: u8, classroom: cr4, role: "student")
 
 # questions
 Question.destroy_all
-q1 = Question.create(user: u1, classroom: cr2, status: "New", title: "Distributive Property")
 q2 = Question.create(user: u2, classroom: cr2, status: "New", title: "Triangle Area")
 q3 = Question.create(user: u3, classroom: cr2, status: "New", title: "Coordinate Plane Graphing")
 q4 = Question.create(user: u4, classroom: cr2, status: "New", title: "Factoring Expressions")
@@ -78,10 +77,5 @@ q9 = Question.create(user: u2, classroom: cr4, status: "New", title: "Quadratic 
 
 # messages
 Message.destroy_all
-m1 = Message.create(user: u1, question: q1, body: "Greetings!")
-m2 = Message.create(user: u2, question: q1, body: "Hello!")
-m3 = Message.create(user: u1, question: q1, body: "How can I help you?")
-m4 = Message.create(user: u1, question: q1, body: "I forget how to distribute when we have a number outside of parentheses")
-m5 = Message.create(user: u2, question: q2, body: "Yoyo!")
-m6 = Message.create(user: u1, question: q2, body: "whatsup!")
-m7 = Message.create(user: u1, question: q2, body: "How do I find the area of a triangle again? I forgot the formula")
+m2 = Message.create(user: u2, question: q2, body: "How do I find the area of a triangle again? I forgot the formula...")
+m3 = Message.create(user: u3, question: q9, body: "Can someone remind me of the quadratic formula?")

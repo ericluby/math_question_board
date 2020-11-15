@@ -126,6 +126,7 @@ const ChatContainer = (props) => {
   };
 
   let messagesComponents = messages.map(message => {
+    message.profilePhoto.url = message.profilePhoto.url || "https://math-mentors-production.s3.amazonaws.com/studentbasicimage.png"
     return(
       <Message
         key={message.messageId}

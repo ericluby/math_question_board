@@ -9,7 +9,8 @@
 }
 
 #app {
-  height: 100vh;
+  // height: 100vh;
+  height: fit-content;
 }
 
 .white-BG {
@@ -82,4 +83,10 @@ a:hover {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 531px) {
+  .container { display: flex; flex-flow: column; }
+  .two { order: 1; }
+  .one { order: 2 }
 }

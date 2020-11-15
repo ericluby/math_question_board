@@ -43,7 +43,8 @@ const ChatContainer = (props) => {
         received: data => {
           // Data broadcasted from the chat channel
           console.log(data)
-          handleMessageReceipt(data)
+          handleMessageReceipt(data)          
+          scrollToBottom()
         }
       }
     );
@@ -65,6 +66,7 @@ const ChatContainer = (props) => {
       userId: user.user_id
     })
     handleClearForm();
+    scrollToBottom()
   }
 
   const handleImageFormSubmit = (event) => {
@@ -97,6 +99,7 @@ const ChatContainer = (props) => {
       setImageUpload({
         image: ""
       })
+      scrollToBottom()
     };
 
   const handleMessageChange = (event) => {
@@ -117,6 +120,7 @@ const ChatContainer = (props) => {
       userId: user.user_id
     })
     handleClearForm();
+    scrollToBottom()
   };
 
   
@@ -158,13 +162,15 @@ const ChatContainer = (props) => {
   if(imageUpload.image === ""){
     photoUploaded = (
     <div>
-      <p className="no-margin placeholder-text">Click here or drag and drop to upload an image of your work</p>
+      {/* <p className="no-margin placeholder-text">Click here or drag and drop to upload an image</p> */}
+      <p className="no-margin placeholder-text">Insert an image</p>
     </div>
     )
   }else if (imageUpload.image !== ""){
     photoUploaded = (
     <div>
-      <p className="no-margin placeholder-text">Photo Uploaded: {imageUpload.image.path}</p>
+      {/* <p className="no-margin placeholder-text">Photo Uploaded: {imageUpload.image.path}</p> */}
+      <p className="no-margin placeholder-text">{imageUpload.image.path}</p>
     </div>
     )
   }
@@ -253,6 +259,10 @@ const ChatContainer = (props) => {
     }
   };
 
+  const scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   return(
     <div className="grid-x row align-center show-background">
       <div className='callout chat cell chat-box medium-11' id='chatWindow' >
@@ -265,6 +275,11 @@ const ChatContainer = (props) => {
         <button onClick={changeToEquation} className="input-group-label min-height">Equation</button>
         {chatInput()}
         {chatSubmit()}
+      </div>
+      <div 
+        style={{ float:"left", clear: "both" }}
+        ref={(el) => { this.messagesEnd = el; }}
+      >
       </div>
     </div>
   );

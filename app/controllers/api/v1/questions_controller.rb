@@ -5,7 +5,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def create
-    question = Question.new(status: "new", title: params["title"])
+    question = Question.new(status: "New", title: params["title"])
     question.user = current_user
     question.classroom_id = params["classroom_id"]
     question.save

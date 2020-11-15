@@ -71,11 +71,11 @@ const QuestionShowContainer = (props) => {
         </span>
       </div>
       <div className="grid-x row align-center">
-        <div className="grid-x medium-11 grid-padding-x center-text top-margin bottom-margin min-height">
-          <div className="cell medium-9 callout min-height">
+        <div className="grid-x small-11 grid-padding-x center-text top-margin bottom-margin min-height">
+          <div className="cell small-9 callout min-height card-section-padding">
             <h4>{questionTitle}</h4>
           </div>
-          <div className="cell medium-3 callout min-height">
+          <div className="cell small-3 callout min-height card-section-padding">
             <h6>Status: {status} </h6>
           </div>
         </div>
@@ -83,7 +83,6 @@ const QuestionShowContainer = (props) => {
       <ChatContainer
         classroomId = {props.match.params.classroom_id}
         questionId = {props.match.params.question_id}
-
         />
     </div>
   )

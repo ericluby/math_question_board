@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Message from '../Message';
 import Dropzone from "react-dropzone";
 import { addStyles, EditableMathField } from 'react-mathquill'
@@ -120,36 +119,7 @@ const ChatContainer = (props) => {
     handleClearForm();
   };
 
-  const changeStatusOnSubmit = (event) => {
-    event.preventDefault();
-
-    fetch(`/api/v1/classrooms/${props.classroomId}/questions/${props.questionId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        status: "closed"
-        }),
-      credentials: 'same-origin',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      debugger
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`)
-    );
-  }
+  
 
   let messagesComponents = messages.map(message => {
     return(
@@ -285,19 +255,6 @@ const ChatContainer = (props) => {
 
   return(
     <div className="grid-x row align-center show-background">
-      <div className="margins">
-        <form onSubmit={changeStatusOnSubmit} className="grid-x align-middle">
-          <input
-            type="submit"
-            className="button light-text"
-            value="Mark Question As Complete"
-          />
-        </form>
-      </div>
-      <div className="margins">
-        <Link className="button light-text" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
-      </div>
-
       <div className='callout chat cell chat-box medium-11' id='chatWindow' >
         {messagesComponents}
       </div>

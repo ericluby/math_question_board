@@ -3,7 +3,7 @@ import React, { useState } from "react"
 const QuestionFormContainer = (props) => {
   const [newQuestion, setNewQuestion] = useState({
     title: "",
-    questionBody: ""
+    // questionBody: ""
   })
 
   const handleChange = (event) => {
@@ -19,7 +19,7 @@ const QuestionFormContainer = (props) => {
     props.addNewQuestion(newQuestion)
     setNewQuestion({
       title: "",
-      questionBody: ""
+      // questionBody: ""
     })
   }
 
@@ -39,7 +39,7 @@ const QuestionFormContainer = (props) => {
               value={newQuestion.title}
             />
           </label>
-          <label>
+          {/* <label>
             Question:
             <textarea
               rows="3"
@@ -49,7 +49,7 @@ const QuestionFormContainer = (props) => {
               onChange={handleChange}
               value={newQuestion.questionBody}>
             </textarea>
-          </label>
+          </label> */}
           <div className="center-text">
             <input
               className="button light-text large"

@@ -14,7 +14,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-
+    question = Question.find(params["id"])
+    render json: question
   end
 
   def update

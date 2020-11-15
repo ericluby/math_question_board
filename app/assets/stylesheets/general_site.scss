@@ -33,8 +33,12 @@ a:hover {
   margin-top: 1rem;
 }
 
+.bottom-margin {
+  margin-bottom: 1rem;
+}
+
 .min-height {
-  min-height: 60px;
+  height: 60px;
 }
 
 .placeholder-text {
@@ -48,4 +52,16 @@ a:hover {
 .side-margins {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.center-items {
+  justify-content: center;
+}
+
+.center-text {
+  align-items: center;
+}
+
+.no-bottom-margins {
+  margin-bottom: 0;
 }

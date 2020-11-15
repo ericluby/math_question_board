@@ -8,26 +8,26 @@
 
 # users
 User.destroy_all
-u1 = User.new(first_name: "Eric", last_name: "Luby", email: "luby@fake.com", is_admin: true)
+u1 = User.new(first_name: "Eric", last_name: "Luby", email: "eluby@fake.com", is_admin: true)
 u1.password =  "1234567"
 u1.save
 
-u2 = User.new(first_name: "Nathan", last_name: "Jones", email: "njones@fake.com", is_admin: false)
+u2 = User.new(first_name: "Destiny", last_name: "Nugent", email: "njones@fake.com", is_admin: false)
 u2.password =  "1234567"
 u2.save
 
-u3 = User.new(first_name: "Tom", last_name: "Smith", email: "tsmith@fake.com", is_admin: false)
+u3 = User.new(first_name: "Tom", last_name: "Stern", email: "tStern@fake.com", is_admin: false)
 u3.password =  "1234567"
 u3.save
 
-u4 = User.new(first_name: "Jacob", last_name: "Marley", email: "jmarley@fake.com", is_admin: false)
+u4 = User.new(first_name: "Judy", last_name: "Simmons", email: "jsimmons@fake.com", is_admin: false)
 u4.password =  "1234567"
 u4.save
 
-u5 = User.create(email: "banana@gmail.com", password: "123456", first_name: "Nick", last_name: "Banana", is_admin: false)
-u6 = User.create(email: "fake@fake.com", password: "123456", first_name: "Faker", last_name: "Baker", is_admin: false)
-u7 = User.create(email: "fang@example.com", password: "123456", first_name: "Fang", last_name: "Unicorn", is_admin: false)
-u8 = User.create(email: "keen@example.com", password: "123456", first_name: "Dova", last_name: "Cat", is_admin: false)
+u5 = User.create(email: "narmando@fake.com", password: "123456", first_name: "Nick", last_name: "Armando", is_admin: false)
+u6 = User.create(email: "klevesque@fake.com", password: "123456", first_name: "Kerrin", last_name: "Levesque", is_admin: false)
+u7 = User.create(email: "skillian@fake.com", password: "123456", first_name: "Stephen", last_name: "Killian", is_admin: false)
+u8 = User.create(email: "ldully@fake.com", password: "123456", first_name: "Liz", last_name: "Dully", is_admin: false)
 
 # classrooms
 Classroom.destroy_all

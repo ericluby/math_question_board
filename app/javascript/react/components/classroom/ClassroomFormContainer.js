@@ -25,7 +25,7 @@ const ClassroomFormContainer = (props) => {
 
   return(
     <div className="dark-text">
-      <p className="dark-text">Create a New Classroom below</p>
+      <p className="dark-text">Create a New Classroom Below</p>
       <form onSubmit={handleSubmit} >
         <label>
           Classroom Subject:

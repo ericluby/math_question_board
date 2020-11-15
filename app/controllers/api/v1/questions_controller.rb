@@ -1,7 +1,6 @@
 class Api::V1::QuestionsController < ApiController
   def index
-    questions = Question.where(classroom_id: params['classroom_id'])
-
+    questions = Question.order(created_at: :desc).where(classroom_id: params['classroom_id'])
     render json: questions
   end
 
@@ -10,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
     question.user = current_user
     question.classroom_id = params["classroom_id"]
     question.save
-
+    
     render json: question
   end
 

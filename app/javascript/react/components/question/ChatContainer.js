@@ -206,7 +206,7 @@ const ChatContainer = (props) => {
           type='submit' 
           value='Send' 
           onClick={handleTextFormSubmit} 
-          className='light-text input-group-button min-height' 
+          className='light-text input-group-button min-height secondary' 
         />
       )
     }else if(chatInputType === "image"){
@@ -215,7 +215,7 @@ const ChatContainer = (props) => {
           type="submit"
           value="Send"
           onClick={handleImageFormSubmit}
-          className="light-text input-group-button min-height"
+          className="light-text input-group-button min-height secondary"
         />
       )
     }else if(chatInputType === "equation"){
@@ -224,7 +224,7 @@ const ChatContainer = (props) => {
           type="submit"
           value="Send"
           onClick={handleEquationFormSubmit}
-          className="light-text input-group-button min-height"
+          className="light-text input-group-button min-height secondary"
           style={{height: "100%"}}
         />
       )
@@ -298,28 +298,17 @@ const ChatContainer = (props) => {
         <Link className="button light-text" to={`/classrooms/${props.classroomId}`}>Return To The Classroom</Link>
       </div>
 
-      <div className='callout chat cell chat-box medium-10' id='chatWindow' >
+      <div className='callout chat cell chat-box medium-11' id='chatWindow' >
         {messagesComponents}
       </div>
 
-      <div className="input-group min-height top-margin">
+      <div className="input-group min-height top-margin side-margins">
         <button onClick={changeToText} className="input-group-label min-height">Text</button>
         <button onClick={changeToImage} className="input-group-label min-height">Image</button>
         <button onClick={changeToEquation} className="input-group-label min-height">Equation</button>
         {chatInput()}
         {chatSubmit()}
-        {/* <input className="input-group-field" type="number"/>
-        
-        <div className="input-group-button">
-          <input type="submit" className="button" value="Submit"/>
-        </div> */}
       </div>
-
-      <div>
-       
-      </div>
-
-
     </div>
   );
 }

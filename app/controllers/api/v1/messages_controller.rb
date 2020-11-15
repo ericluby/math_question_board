@@ -18,7 +18,8 @@ class Api::V1::MessagesController < ApiController
         "questionId": message["question_id"],
         "body": message["body"],
         "messageId": message.id,
-        "userId": message["user_id"]
+        "userId": message["user_id"],
+        "profilePhoto": message.user.profile_photo
       }
     end
 

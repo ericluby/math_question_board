@@ -10,7 +10,8 @@ class ChatChannel < ApplicationCable::Channel
         "questionId": message["question_id"],
         "body": message["body"],
         "messageId": message.id,
-        "userId": message["user_id"]
+        "userId": message["user_id"],
+        "profilePhoto": message.user.profile_photo
       }
     end
 
@@ -33,7 +34,8 @@ class ChatChannel < ApplicationCable::Channel
         "questionId": message["question_id"],
         "body": message["body"],
         "messageId": message.id,
-        "userId": message["user_id"]
+        "userId": message["user_id"],
+        "profilePhoto": message.user.profile_photo
       }
     end
 

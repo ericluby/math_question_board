@@ -63,7 +63,8 @@ const ChatContainer = (props) => {
     // Send info to the receive method on the back end
     App.chatChannel.send({
       body: body,
-      userId: user.user_id
+      userId: user.user_id,
+      userImage: user.profile_photo
     })
     handleClearForm();
     scrollToBottom()
@@ -117,19 +118,19 @@ const ChatContainer = (props) => {
     event.preventDefault();
     App.chatChannel.send({
       body: `ltx${latex}`,
-      userId: user.user_id
+      userId: user.user_id,
+      userImage: user.profile_photo
     })
     handleClearForm();
     scrollToBottom()
   };
-
-  
 
   let messagesComponents = messages.map(message => {
     return(
       <Message
         key={message.messageId}
         body={message.body}
+        profileImage={message.profilePhoto}
       />
     )
   }, this);

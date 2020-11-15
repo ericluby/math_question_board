@@ -32,6 +32,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :profile_photo, "Profile Photo" %><br />
+    <%= f.file_field :profile_photo %>
+  </div>
+
+  <div class="field">
     <%= f.label :is_admin, "Admin" %><br />
     <%= f.text_field :is_admin %>
   </div>

@@ -9,7 +9,6 @@ const QuestionTile = (props) => {
           <div className="card-section card-section-padding">
             <h4 className="text-center">{props.data.title}</h4>
             <p>Status: {props.data.status}</p>
-            <p>{props.data.created_at}</p>        
           </div>
         </div>
       </Link>

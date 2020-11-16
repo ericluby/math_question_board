@@ -5,6 +5,7 @@ import AddUserToClassroomForm from './AddUserToClassroomForm'
 
 const ClassroomShowContainer = (props) => {
   const [usersWithRoles, setusersWithRoles] = useState([])
+  let currentUserRole = ""
   useEffect(() => {
     fetch(`/api/v1/classrooms/${props.match.params.id}`)
     .then(response => {
@@ -64,8 +65,8 @@ const ClassroomShowContainer = (props) => {
   }
 
   return(
-    <div className="grid-x page">
-      <div className="cell medium-3 side-bar-general-background">
+    <div className="grid-x page container">
+      <div className="cell medium-3 side-bar-general-background one">
         <ul className="no-bullet side-bar-user-background" >
           <p className="light-text side-bar-role-text">
             Teachers:
@@ -85,7 +86,7 @@ const ClassroomShowContainer = (props) => {
           />
         </div>
       </div>
-      <div className="cell medium-9 show-background">
+      <div className="cell medium-9 show-background two">
         <QuestionIndexContainer
           classroomId={props.match.params.id}
         />

@@ -73,10 +73,10 @@ const QuestionShowContainer = (props) => {
       </div>
       <div className="grid-x row align-center">
         <div className="grid-x small-11 grid-padding-x center-text top-margin bottom-margin min-height">
-          <div className="cell small-11 callout min-height card-section-padding">
+          <div className="cell small-10 callout min-height card-section-padding">
             <h4 className="center">{questionTitle}</h4>
           </div>
-          <div className="cell small-1 callout min-height card-section-padding">
+          <div className="cell small-2 callout min-height card-section-padding">
             <h6 className="center">Status: {status} </h6>
           </div>
         </div>

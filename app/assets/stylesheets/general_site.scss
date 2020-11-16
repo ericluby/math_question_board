@@ -9,7 +9,8 @@
 }
 
 #app {
-  height: 100vh;
+  // height: 100vh;
+  height: fit-content;
 }
 
 .white-BG {
@@ -69,4 +70,23 @@ a:hover {
 .chat-profile_photo {
   max-width: 40px;
   max-height: 40px;
+}
+
+.padding-top {
+  padding-top: 1rem;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 531px) {
+  .container { display: flex; flex-flow: column; }
+  .two { order: 1; }
+  .one { order: 2 }
 }

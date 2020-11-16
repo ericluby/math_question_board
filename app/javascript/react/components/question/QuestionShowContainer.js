@@ -31,7 +31,7 @@ const QuestionShowContainer = (props) => {
     fetch(`/api/v1/classrooms/${props.match.params.classroom_id}/questions/${props.match.params.question_id}`, {
       method: 'PATCH',
       body: JSON.stringify({
-        status: "closed",
+        status: "Solved",
         }),
       credentials: 'same-origin',
       headers: {
@@ -63,7 +63,8 @@ const QuestionShowContainer = (props) => {
           <input
               type="submit"
               className="button light-text"
-              value="Mark Question As Complete"
+              value="Mark Question As Solved"
+              onClick={changeStatusOnSubmit}
             />
         </span>
         <span className="side-margins">
@@ -72,11 +73,11 @@ const QuestionShowContainer = (props) => {
       </div>
       <div className="grid-x row align-center">
         <div className="grid-x small-11 grid-padding-x center-text top-margin bottom-margin min-height">
-          <div className="cell small-9 callout min-height card-section-padding">
-            <h4>{questionTitle}</h4>
+          <div className="cell small-10 callout min-height card-section-padding">
+            <h4 className="center">{questionTitle}</h4>
           </div>
-          <div className="cell small-3 callout min-height card-section-padding">
-            <h6>Status: {status} </h6>
+          <div className="cell small-2 callout min-height card-section-padding">
+            <h6 className="center">Status: {status} </h6>
           </div>
         </div>
       </div>

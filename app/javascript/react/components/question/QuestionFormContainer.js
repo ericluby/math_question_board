@@ -2,8 +2,7 @@ import React, { useState } from "react"
 
 const QuestionFormContainer = (props) => {
   const [newQuestion, setNewQuestion] = useState({
-    title: "",
-    // questionBody: ""
+    title: ""
   })
 
   const handleChange = (event) => {
@@ -18,8 +17,7 @@ const QuestionFormContainer = (props) => {
     // add a function here to persist the question
     props.addNewQuestion(newQuestion)
     setNewQuestion({
-      title: "",
-      // questionBody: ""
+      title: ""
     })
   }
 
@@ -39,17 +37,6 @@ const QuestionFormContainer = (props) => {
               value={newQuestion.title}
             />
           </label>
-          {/* <label>
-            Question:
-            <textarea
-              rows="3"
-              name="questionBody"
-              id="questionBody"
-              type="text"
-              onChange={handleChange}
-              value={newQuestion.questionBody}>
-            </textarea>
-          </label> */}
           <div className="center-text">
             <input
               className="button light-text large"

@@ -3,6 +3,8 @@ import Message from '../Message';
 import Dropzone from "react-dropzone";
 import { addStyles, EditableMathField } from 'react-mathquill'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 addStyles()
 
 const ChatContainer = (props) => {
@@ -16,7 +18,6 @@ const ChatContainer = (props) => {
   const [chatInputType, setChatInputType] = useState("text")
 
   useEffect(() => {
-
     fetch("/api/v1/users/current", {
       credentials: 'same-origin',
       method: 'GET',
@@ -126,6 +127,7 @@ const ChatContainer = (props) => {
   };
 
   let messagesComponents = messages.map(message => {
+    message.profilePhoto.url = message.profilePhoto.url || "https://math-mentors-production.s3.amazonaws.com/studentbasicimage.png"
     return(
       <Message
         key={message.messageId}
@@ -179,21 +181,25 @@ const ChatContainer = (props) => {
   let chatSubmit = () => {
     if(chatInputType === "text"){
       return(
+      <div>
         <input 
           type='submit' 
           value='Send' 
           onClick={handleTextFormSubmit} 
           className='light-text input-group-button min-height secondary' 
         />
+      </div>
       )
     }else if(chatInputType === "image"){
       return(
-        <input
-          type="submit"
-          value="Send"
-          onClick={handleImageFormSubmit}
-          className="light-text input-group-button min-height secondary"
-        />
+        <div>
+          <input
+            type="submit"
+            value="Send"
+            onClick={handleImageFormSubmit}
+            className="light-text input-group-button min-height secondary"
+          />
+        </div>
       )
     }else if(chatInputType === "equation"){
       return(
@@ -271,12 +277,13 @@ const ChatContainer = (props) => {
       </div>
 
       <div className="input-group min-height top-margin side-margins">
-        <button onClick={changeToText} className="input-group-label min-height">Text</button>
-        <button onClick={changeToImage} className="input-group-label min-height">Image</button>
-        <button onClick={changeToEquation} className="input-group-label min-height">Equation</button>
+        <button onClick={changeToText} className="input-group-label min-height"><FontAwesomeIcon icon="font" /></button>
+        <button onClick={changeToImage} className="input-group-label min-height"><FontAwesomeIcon icon="images" /></button>
+        <button onClick={changeToEquation} className="input-group-label min-height"><FontAwesomeIcon icon="square-root-alt" /></button>
         {chatInput()}
         {chatSubmit()}
       </div>
+
       <div 
         style={{ float:"left", clear: "both" }}
         ref={(el) => { this.messagesEnd = el; }}

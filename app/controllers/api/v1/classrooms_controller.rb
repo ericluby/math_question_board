@@ -5,7 +5,14 @@ class Api::V1::ClassroomsController < ApiController
 
   def show
     classroom = Classroom.find(params[:id])
+    # preexisting_roster = Roster.find_by(classroom_id: params[:id], user: current_user)
+    
+    # classroomData = {
+    #   "classroom" => classroom,
+    #   "role" => preexisting_roster.role
+    # }
 
+    # render json: classroomData
     render json: classroom
   end
 

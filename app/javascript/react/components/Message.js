@@ -11,6 +11,7 @@ const Message = (props) => {
   if(isImgURL.test(props.body)){
     return(
       <div>
+        {/* {profileImageShow} */}
         <img src={props.profileImage.url} width="40"/>
         <img src={props.body}/>
       </div>
@@ -19,6 +20,7 @@ const Message = (props) => {
     const equation = props.body.substring(3);
     return(
         <div>
+          {/* {profileImageShow} */}
           <img src={props.profileImage.url} width="40"/>
           <StaticMathField>{equation}</StaticMathField>
         </div>
@@ -26,6 +28,7 @@ const Message = (props) => {
   }else{
     return(
       <p>
+        {/* {profileImageShow} */}
         <img src={props.profileImage.url} width="40"/>
         {props.body}
       </p>
